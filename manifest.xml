@@ -8,9 +8,9 @@
   <Description DefaultValue="Use partial address information to query for full location details."/>
   <IconUrl DefaultValue="https://localhost:3000/assets/icon-32.png"/>
   <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-80.png"/>
-  <SupportUrl DefaultValue="https://www.contoso.com/help"/>
+  <SupportUrl DefaultValue="https://nilsloewen.ca/place_details_finder"/>
   <AppDomains>
-    <AppDomain>contoso.com</AppDomain>
+    <AppDomain>nilsloewen.com</AppDomain>
   </AppDomains>
   <Hosts>
     <Host Name="Workbook"/>

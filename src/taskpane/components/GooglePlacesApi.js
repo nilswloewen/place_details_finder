@@ -6,7 +6,7 @@ export default class GooglePlacesApi extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      defaultApiKey: "AIzaSyBq2rae7f0oP1ZxaYBUVuypUY-hTARpeXY"
+      apiKey: "AIzaSyBq2rae7f0oP1ZxaYBUVuypUY-hTARpeXY"
     };
   }
 
@@ -57,6 +57,9 @@ export default class GooglePlacesApi extends React.Component {
       if (numb_rows_selected > 1) {
         const selected_row_index = Number(document.getElementById("selected_row_index").innerText);
         for (let i = selected_row_index; i <= selected_row_index + numb_rows_selected; i++) {
+          if (i === 0) {
+            continue;
+          }
           const queryValues = await this.buildQueryFromRowIndex(i);
           const query = queryValues.join(" ");
           document.getElementById("query_input").value = query;
@@ -75,7 +78,7 @@ export default class GooglePlacesApi extends React.Component {
       console.error(error);
     }
 
-    const query = document.getElementById("query_input").value;
+    const query = document.getElementById("query_input").innerText;
     if (query.length > 0) {
       let selectedRowIndex = Number(document.getElementById("selected_row_index").innerText);
       if (selectedRowIndex === 0) {
@@ -162,8 +165,6 @@ export default class GooglePlacesApi extends React.Component {
           await context.sync();
 
           cell.values = errorMsg;
-
-          cell.format.autofitColumns();
           return context.sync();
         });
       } catch (error) {
@@ -214,18 +215,20 @@ export default class GooglePlacesApi extends React.Component {
 
   render() {
     return (
-      <div>
-        <Script url={"https://maps.googleapis.com/maps/api/js?key=" + this.state.defaultApiKey + "&libraries=places"} />
-        <label>
-          Google Places Api Key
-          <input
-            type="text"
-            id="api_key"
-            value={this.state.defaultApiKey}
-            onChange={this.handleApiKeyChange}
-            style={{ width: "280px" }}
-          />
-        </label>
+      <div className="section">
+        <div className="instructions">
+          <span className="bullet">Step 4.</span>
+          Enter your <a href="https://cloud.google.com/maps-platform/">Google Places Api</a> key.
+        </div>
+        <Script url={"https://maps.googleapis.com/maps/api/js?key=" + this.state.apiKey + "&libraries=places"} />
+        <div
+          contentEditable={true}
+          value={this.state.apiKey}
+          onChange={this.handleApiKeyChange}
+          id="api_key"
+          placeholder={"Your api key here..."}
+          style={{ width: "280px" }}
+        />
         <div id="map" />
         <PrimaryButton onClick={this.search} iconProps={{ iconName: "ChevronRight" }}>
           Search

@@ -24,7 +24,7 @@ export default class App extends React.Component {
         document.getElementById("selected_address").innerText = args.address + 1;
         document.getElementById("rows_selected").innerText = selectedRange.rowCount;
         document.getElementById("selected_row_index").innerText = selectedRange.rowIndex;
-        document.getElementById("query_input").value = query.join(" ");
+        document.getElementById("query_input").innerText = query.join(" ");
       });
     };
     get.bind(args);
@@ -80,41 +80,22 @@ export default class App extends React.Component {
 
     return (
       <div>
-        <table>
-          <tbody>
-            <tr>
-              <td>Selected Address</td>
-              <td id="selected_address" />
-            </tr>
-
-            <tr>
-              <td>Selected Row Index</td>
-              <td id="selected_row_index" />
-            </tr>
-
-            <tr>
-              <td>Number of rows</td>
-              <td id="rows_selected" />
-            </tr>
-
-            <tr>
-              <td colSpan="2">
-                <QueryColumnsTable />
-              </td>
-            </tr>
-
-            <tr>
-              <td>Query</td>
-            </tr>
-            <tr>
-              <td colSpan="2">
-                <input type="textarea" id="query_input" placeholder={"Click on a row..."} style={{ width: "280px" }} />
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div id="selected_address" className="hidden" />
+        <div id="selected_row_index" className="hidden" />
+        <div id="rows_selected" className="hidden" />
 
         <InitOutputRangeBtn />
+
+        <QueryColumnsTable />
+
+        <div className="section">
+          <div className="instructions">
+            <span className="bullet">Step 3.</span>
+            Review and modify the query built from your selection.
+          </div>
+          <div contentEditable={true} id="query_input" placeholder={"Click on a row..."} style={{ width: "280px"}} />
+        </div>
+
         <GooglePlacesApi />
         <BuildJsonBtn />
       </div>

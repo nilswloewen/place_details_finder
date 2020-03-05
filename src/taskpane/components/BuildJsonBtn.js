@@ -27,7 +27,6 @@ export default class BuildJsonBtn extends React.Component {
     console.log('ACTION: "Export as JSON" was clicked.');
     document.getElementById("json_output").value = "Building JSON...";
     let places = [];
-    let place = {};
     const rows = await this.getAllRowsWithNameValue();
     const headers = new Map([
       ["name", true],
@@ -40,6 +39,7 @@ export default class BuildJsonBtn extends React.Component {
 
     try {
       for (const row of rows) {
+        let place = {};
         place.id = row;
 
         for (const [machineName, required] of headers) {
@@ -69,20 +69,15 @@ export default class BuildJsonBtn extends React.Component {
     }
   };
 
-  buildxJson(id, details) {
-    return JSON.stringify({
-      id: id,
-      name: details.name,
-      address: details.adr_address,
-      lat: details.geometry.location.lat,
-      long: details.geometry.location.lng
-    });
-  }
   render() {
     return (
-      <div>
+      <div className="section">
+        <div className="instructions">
+          <span className="bullet">Step 5.</span>
+          Export found Place Details as JSON. 
+        </div>
         <PrimaryButton onClick={this.buildJson} iconProps={{ iconName: "ChevronRight" }}>
-          Export as JSON
+          Build JSON
         </PrimaryButton>
         <input id="json_output" type="textarea" readOnly={true} style={{ width: "280px" }} />
       </div>

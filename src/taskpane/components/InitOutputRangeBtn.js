@@ -91,9 +91,15 @@ export default class InitOutputRangeBtn extends React.Component {
       return null;
     }
     return (
-      <PrimaryButton onClick={this.initRange} iconProps={{ iconName: "ChevronRight" }}>
-        Initialize output range
-      </PrimaryButton>
+      <div className="section">
+        <div className="instructions">
+          <span className="bullet">Step 1.</span>
+          Create the columns where found address details will be stored.
+        </div>
+        <PrimaryButton id="init_output_range_btn" onClick={this.initRange} iconProps={{ iconName: "ChevronRight" }}>
+          Create output columns 
+        </PrimaryButton>
+      </div>
     );
   }
 }
