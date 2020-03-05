@@ -1,84 +1,122 @@
 import * as React from "react";
-import { Button, ButtonType } from "office-ui-fabric-react";
-import Header from "./Header";
-import HeroList, { HeroListItem } from "./HeroList";
 import Progress from "./Progress";
-/* global Button, console, Excel, Header, HeroList, HeroListItem, Progress */
+import QueryColumnsTable from "./QueryColumnsTable";
+import GooglePlacesApi from "./GooglePlacesApi";
+import InitOutputRangeBtn from "./InitOutputRangeBtn";
+import BuildJsonBtn from "./BuildJsonBtn";
 
 export default class App extends React.Component {
   constructor(props, context) {
     super(props, context);
-    this.state = {
-      listItems: []
-    };
   }
 
-  componentDidMount() {
-    this.setState({
-      listItems: [
-        {
-          icon: "Ribbon",
-          primaryText: "Achieve more with Office integration"
-        },
-        {
-          icon: "Unlock",
-          primaryText: "Unlock features and functionality"
-        },
-        {
-          icon: "Design",
-          primaryText: "Create and visualize like a pro"
-        }
-      ]
-    });
-  }
-
-  click = async () => {
-    try {
+  onSelectionChange = async args => {
+    console.log("onSelectionChange() fired.");
+    let get = async () => {
       await Excel.run(async context => {
-        /**
-         * Insert your Excel code here
-         */
-        const range = context.workbook.getSelectedRange();
-
-        // Read the range address
-        range.load("address");
-
-        // Update the fill color
-        range.format.fill.color = "yellow";
-
+        const sheet = context.workbook.worksheets.getItem(args.worksheetId);
+        const selectedRange = sheet.getRange(args.address).load(["address", "rowCount", "rowIndex"]);
         await context.sync();
-        console.log(`The range address was ${range.address}.`);
+
+        const query = await this.buildQueryFromRowIndex(context, args.worksheetId, selectedRange.rowIndex);
+
+        // Display selected range and amount of rows.
+        document.getElementById("selected_address").innerText = args.address + 1;
+        document.getElementById("rows_selected").innerText = selectedRange.rowCount;
+        document.getElementById("selected_row_index").innerText = selectedRange.rowIndex;
+        document.getElementById("query_input").value = query.join(" ");
       });
-    } catch (error) {
-      console.error(error);
+    };
+    get.bind(args);
+    get();
+  };
+
+  getQueryColumnAddresses = () => {
+    const table = document.getElementById("query_columns_table");
+    let addresses = [];
+    for (let i = 0; i < table.rows.length; i++) {
+      addresses.push(table.rows[i].cells[0].innerText);
     }
+    return addresses;
+  };
+
+  buildQueryFromRowIndex = async (context, worksheetId, rowIndex) => {
+    const addresses = this.getQueryColumnAddresses();
+    let queryValues = [];
+
+    for (const address of addresses) {
+      const val = await Excel.run(async context => {
+        const sheet = context.workbook.worksheets.getItem(worksheetId);
+        const column = sheet.getRange(address).load("columnIndex");
+        await context.sync();
+        const cell = sheet.getRangeByIndexes(rowIndex, column.columnIndex, 1, 1).load("values");
+        await context.sync();
+        return cell.values[0][0];
+      });
+      queryValues.push(val);
+    }
+
+    return queryValues;
+  };
+
+  attachSelectionEventToTable = async () => {
+    Excel.run(async context => {
+      let sheet = context.workbook.worksheets.getActiveWorksheet();
+      sheet.onSelectionChanged.add(this.onSelectionChange);
+
+      await context.sync();
+      console.log("onSelectionChanged event successfully registered SourceTable.");
+    });
   };
 
   render() {
     const { title, isOfficeInitialized } = this.props;
 
     if (!isOfficeInitialized) {
-      return (
-        <Progress title={title} logo="assets/logo-filled.png" message="Please sideload your addin to see app body." />
-      );
+      return <Progress title={title} message="Details Finder is loading..." />;
     }
 
+    this.attachSelectionEventToTable();
+
     return (
-      <div className="ms-welcome">
-        <Header logo="assets/logo-filled.png" title={this.props.title} message="Welcome" />
-        <HeroList message="Discover what Office Add-ins can do for you today!" items={this.state.listItems}>
-          <p className="ms-font-l">
-            Modify the source files, then click <b>Run</b>.
-          </p>
-          <Button
-            className="ms-welcome__action"
-            buttonType={ButtonType.hero}
-            iconProps={{ iconName: "ChevronRight" }}
-            onClick={this.click}
-          >
-            Run
-          </Button>
-        </HeroList>
+      <div>
+        <table>
+          <tbody>
+            <tr>
+              <td>Selected Address</td>
+              <td id="selected_address" />
+            </tr>
+
+            <tr>
+              <td>Selected Row Index</td>
+              <td id="selected_row_index" />
+            </tr>
+
+            <tr>
+              <td>Number of rows</td>
+              <td id="rows_selected" />
+            </tr>
+
+            <tr>
+              <td colSpan="2">
+                <QueryColumnsTable />
+              </td>
+            </tr>
+
+            <tr>
+              <td>Query</td>
+            </tr>
+            <tr>
+              <td colSpan="2">
+                <input type="textarea" id="query_input" placeholder={"Click on a row..."} style={{ width: "280px" }} />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <InitOutputRangeBtn />
+        <GooglePlacesApi />
+        <BuildJsonBtn />
       </div>
     );
   }
