@@ -6,7 +6,7 @@ export default class GooglePlacesApi extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      apiKey: "AIzaSyBq2rae7f0oP1ZxaYBUVuypUY-hTARpeXY"
+      apiKey: "NO KEY"
     };
   }
 
