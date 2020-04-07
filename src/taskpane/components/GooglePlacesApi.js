@@ -6,15 +6,31 @@ export default class GooglePlacesApi extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      apiKey: "NO KEY"
+      apiKey: "",
+      submitted: false
     };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleApiKeyChange() {
-    this.setState((prevState, props) => {
-      return prevState;
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.value;
+
+    this.setState({
+      apiKey: value
     });
   }
+
+  handleSubmit(event) {
+    console.log("Api key was submitted: " + this.state.apiKey);
+
+    this.setState({
+      submitted: true
+    });
+    event.preventDefault();
+  };
 
   getPlaceIdFromQuery = query => {
     return new Promise(function(resolve, reject) {
@@ -182,6 +198,7 @@ export default class GooglePlacesApi extends React.Component {
       latitude: "lat",
       longitude: "lng"
     };
+
     try {
       Object.entries(headers).map(async ([key, value]) => {
         await Excel.run(async context => {
@@ -214,25 +231,39 @@ export default class GooglePlacesApi extends React.Component {
   };
 
   render() {
+    if (this.state.submitted === false) {
+      return (
+        <div className="section">
+          <form onSubmit={this.handleSubmit}>
+            <div className="instructions">
+              <span className="bullet">Step 4.</span>
+              Enter your <a href="https://cloud.google.com/maps-platform/">Google Places Api</a> key.
+            </div>
+
+            <input name="api_key_input" type="text" value={this.state.apiKey} onChange={this.handleInputChange} />
+            <input type="submit" value="Submit" />
+
+            <div id="api_key" />
+          </form>
+        </div>
+      );
+    }
+
     return (
       <div className="section">
+        <Script>function gm_authFailure() {console.log("FAIL")}</Script>
+
         <div className="instructions">
           <span className="bullet">Step 4.</span>
           Enter your <a href="https://cloud.google.com/maps-platform/">Google Places Api</a> key.
         </div>
-        <Script url={"https://maps.googleapis.com/maps/api/js?key=" + this.state.apiKey + "&libraries=places"} />
-        <div
-          contentEditable={true}
-          value={this.state.apiKey}
-          onChange={this.handleApiKeyChange}
-          id="api_key"
-          placeholder={"Your api key here..."}
-          style={{ width: "280px" }}
-        />
-        <div id="map" />
+
+        <input name="api_key_input" type="text" value={this.state.apiKey} onChange={this.handleInputChange} />
+        <Script url={"https://maps.googleapis.com/maps/api/js?libraries=places&key=" + this.state.apiKey} />
         <PrimaryButton onClick={this.search} iconProps={{ iconName: "ChevronRight" }}>
           Search
         </PrimaryButton>
+        <div id="map" />
         <div id="searching" />
       </div>
     );

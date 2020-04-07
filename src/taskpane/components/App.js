@@ -93,7 +93,7 @@ export default class App extends React.Component {
             <span className="bullet">Step 3.</span>
             Review and modify the query built from your selection.
           </div>
-          <div contentEditable={true} id="query_input" placeholder={"Click on a row..."} style={{ width: "280px"}} />
+          <div contentEditable={true} id="query_input" placeholder={"Click on a row..."} style={{ width: "280px" }} />
         </div>
 
         <GooglePlacesApi />
