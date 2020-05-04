@@ -1,19 +1,9 @@
 import * as React from "react";
-import Script from "react-load-script";
 import { PrimaryButton } from "office-ui-fabric-react";
 
 export default class GooglePlacesApi extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      apiKey: "NO KEY"
-    };
-  }
-
-  handleApiKeyChange() {
-    this.setState((prevState, props) => {
-      return prevState;
-    });
   }
 
   getPlaceIdFromQuery = query => {
@@ -24,9 +14,8 @@ export default class GooglePlacesApi extends React.Component {
       service.findPlaceFromQuery(request, function(results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
           resolve(results[0].place_id);
-        } else {
-          reject(status);
         }
+        reject(status);
       });
     });
   };
@@ -42,9 +31,8 @@ export default class GooglePlacesApi extends React.Component {
       service.getDetails(request, function(details, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
           resolve(details);
-        } else {
-          reject(status);
         }
+        reject(status);
       });
     });
   };
@@ -216,19 +204,6 @@ export default class GooglePlacesApi extends React.Component {
   render() {
     return (
       <div className="section">
-        <div className="instructions">
-          <span className="bullet">Step 4.</span>
-          Enter your <a href="https://cloud.google.com/maps-platform/">Google Places Api</a> key.
-        </div>
-        <Script url={"https://maps.googleapis.com/maps/api/js?key=" + this.state.apiKey + "&libraries=places"} />
-        <div
-          contentEditable={true}
-          value={this.state.apiKey}
-          onChange={this.handleApiKeyChange}
-          id="api_key"
-          placeholder={"Your api key here..."}
-          style={{ width: "280px" }}
-        />
         <div id="map" />
         <PrimaryButton onClick={this.search} iconProps={{ iconName: "ChevronRight" }}>
           Search
