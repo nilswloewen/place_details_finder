@@ -47,7 +47,7 @@ export default class ApiKeyForm extends React.Component {
   };
 
   render() {
-    const key = await this.getKey();
+    const key = this.getKey(); 
     console.warn(key);
     return (
       <div className="section">
@@ -66,3 +66,4 @@ export default class ApiKeyForm extends React.Component {
     );
   }
 }
+ 

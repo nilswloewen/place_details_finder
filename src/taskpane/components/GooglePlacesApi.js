@@ -4,6 +4,9 @@ import { PrimaryButton } from "office-ui-fabric-react";
 export default class GooglePlacesApi extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      submitted: false,
+    };
   }
 
   handleSubmit(event) {
