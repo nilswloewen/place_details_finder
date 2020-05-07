@@ -9,7 +9,18 @@ import ApiKeyForm from "./ApiKeyForm";
 export default class App extends React.Component {
   constructor(props, context) {
     super(props, context);
+    this.state = {
+      apiKey: null
+    };
   }
+
+  componentDidMount = () => {
+    OfficeRuntime.storage.getItem("apiKey").then(key => {
+      this.setState({
+        apiKey: key
+      });
+    });
+  };
 
   onSelectionChange = async args => {
     console.log("onSelectionChange() fired.");
@@ -77,6 +88,10 @@ export default class App extends React.Component {
       return <Progress title={title} message="Details Finder is loading..." />;
     }
 
+    if (this.state.apiKey === null) {
+      return <ApiKeyForm />;
+    }
+
     this.attachSelectionEventToTable();
 
     return (
@@ -84,11 +99,8 @@ export default class App extends React.Component {
         <div id="selected_address" className="hidden" />
         <div id="selected_row_index" className="hidden" />
         <div id="rows_selected" className="hidden" />
-
         <InitOutputRangeBtn />
-
         <QueryColumnsTable />
-
         <div className="section">
           <div className="instructions">
             <span className="bullet">Step 3.</span>
@@ -96,9 +108,8 @@ export default class App extends React.Component {
           </div>
           <div contentEditable={true} id="query_input" placeholder={"Click on a row..."} style={{ width: "280px" }} />
         </div>
-
-        <ApiKeyForm />
-        <GooglePlacesApi />
+        <GooglePlacesApi apiKey={this.state.apiKey} />
+        <ApiKeyForm apiKey={this.state.apiKey} />
         <BuildJsonBtn />
       </div>
     );

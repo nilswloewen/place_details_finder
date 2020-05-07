@@ -74,6 +74,13 @@
       }
     </style>
   </head>
+  <div id="google_error" class="hidden"></div>
+  <script>
+    window.gm_authFailure = () => {
+      const div = document.getElementById('google_error');
+      div.innerText = "GoogleError";
+    }
+  </script>
 
   <body class="ms-font-m ms-Fabric">
     <div id="container"></div>

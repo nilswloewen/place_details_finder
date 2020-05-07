@@ -2,6 +2,7 @@ import * as React from "react";
 import { PrimaryButton } from "office-ui-fabric-react";
 
 export default class BuildJsonBtn extends React.Component {
+
   getAllRowsWithNameValue = async () => {
     try {
       return await Excel.run(async context => {
@@ -13,7 +14,7 @@ export default class BuildJsonBtn extends React.Component {
         let rows = [];
         for (let i = nameRange.top + 1; i < nameRange.rowCount; i++) {
           const value = nameRange.values[i][0];
-          if (value.length && value !== "ZERO_RESULTS") {
+          if (value.length && value !== "ZERO_RESULTS" && value.length && value !== "REQUEST_DENIED") {
             rows.push(i);
           }
         }
@@ -23,10 +24,11 @@ export default class BuildJsonBtn extends React.Component {
       console.error(error);
     }
   };
+
   buildJson = async () => {
     console.log('ACTION: "Export as JSON" was clicked.');
     document.getElementById("json_output").value = "Building JSON...";
-    let places = [];
+    let places = new Map();
     const rows = await this.getAllRowsWithNameValue();
     const headers = new Map([
       ["name", true],
@@ -61,9 +63,17 @@ export default class BuildJsonBtn extends React.Component {
           place = { ...place, ...transport };
         }
 
-        places.push(place);
+        places.set(place.name, place);
       }
-      document.getElementById("json_output").value = JSON.stringify(places);
+      console.log(places);
+      places = new Map([...places.entries()].sort());
+      let sortedPlaces = [];
+      for (const [key, value] of places) {
+        sortedPlaces.push(value);
+      }
+      console.log(sortedPlaces);
+
+      document.getElementById("json_output").value = JSON.stringify(sortedPlaces);
     } catch (error) {
       console.error(error);
     }
@@ -74,7 +84,7 @@ export default class BuildJsonBtn extends React.Component {
       <div className="section">
         <div className="instructions">
           <span className="bullet">Step 5.</span>
-          Export found Place Details as JSON. 
+          Export found Place Details as JSON.
         </div>
         <PrimaryButton onClick={this.buildJson} iconProps={{ iconName: "ChevronRight" }}>
           Build JSON

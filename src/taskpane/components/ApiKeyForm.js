@@ -1,11 +1,10 @@
 import * as React from "react";
-import Script from "react-load-script";
 
 export default class ApiKeyForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      apiKey: "Paste Key Here"
+      apiKey: this.props.apiKey
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -15,17 +14,6 @@ export default class ApiKeyForm extends React.Component {
   handleChange(event) {
     this.setState({ apiKey: event.target.value });
   }
-
-  getKey = async () => {
-    const key = await OfficeRuntime.storage.getItem("apiKey").then(result => {
-      return result;
-    });
-
-    if (typeof key !== "undefined" && key.length() > 0) {
-      return key;
-    }
-    return null;
-  };
 
   storeKey = async value => {
     const key = "apiKey";
@@ -44,26 +32,30 @@ export default class ApiKeyForm extends React.Component {
   handleSubmit = async event => {
     event.preventDefault();
     await this.storeKey(this.state.apiKey);
+    window.location.reload(false);
+    // this.checkForValidApiKey();
   };
 
+  checkForValidApiKey() {
+    const err = document.getElementById("google_error");
+    if (err.innerText === "GoogleError") {
+      this.setState({ apiKey: "Invalid" });
+    }
+  }
+
   render() {
-    const key = this.getKey(); 
-    console.warn(key);
     return (
       <div className="section">
         <div className="instructions">
-          <span className="bullet">Step 4.</span>
+          <span className="bullet">Step 1.</span>
           Enter your <a href="https://cloud.google.com/maps-platform/">Google Places Api</a> key.
         </div>
         <label>
           ApiKey:
-          <input defaultValue={this.state.apiKey} onChange={this.handleChange} />
+          <input defaultValue={this.state.apiKey} onChange={this.handleChange} placeholder="Paste Key Here" />
         </label>
         <input type="submit" value="Submit" onClick={this.handleSubmit} />
-
-        <Script url={"https://maps.googleapis.com/maps/api/js?key=" + this.state.apiKey + "&libraries=places"} />
       </div>
     );
   }
 }
- 

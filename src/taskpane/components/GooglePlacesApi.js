@@ -1,22 +1,11 @@
 import * as React from "react";
 import { PrimaryButton } from "office-ui-fabric-react";
+import Script from "react-load-script";
 
 export default class GooglePlacesApi extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      submitted: false,
-    };
   }
-
-  handleSubmit(event) {
-    console.log("Api key was submitted: " + this.state.apiKey);
-
-    this.setState({
-      submitted: true
-    });
-    event.preventDefault();
-  };
 
   getPlaceIdFromQuery = query => {
     return new Promise(function(resolve, reject) {
@@ -215,24 +204,6 @@ export default class GooglePlacesApi extends React.Component {
   };
 
   render() {
-    if (this.state.submitted === false) {
-      return (
-        <div className="section">
-          <form onSubmit={this.handleSubmit}>
-            <div className="instructions">
-              <span className="bullet">Step 4.</span>
-              Enter your <a href="https://cloud.google.com/maps-platform/">Google Places Api</a> key.
-            </div>
-
-            <input name="api_key_input" type="text" value={this.state.apiKey} onChange={this.handleInputChange} />
-            <input type="submit" value="Submit" />
-
-            <div id="api_key" />
-          </form>
-        </div>
-      );
-    }
-
     return (
       <div className="section">
         <div id="map" />
@@ -241,6 +212,8 @@ export default class GooglePlacesApi extends React.Component {
         </PrimaryButton>
         <div id="map" />
         <div id="searching" />
+
+        <Script url={"https://maps.googleapis.com/maps/api/js?libraries=places&key=" + this.props.apiKey } />
       </div>
     );
   }
