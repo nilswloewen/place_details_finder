@@ -74,11 +74,12 @@
       }
     </style>
   </head>
-  <div id="google_error" class="hidden"></div>
+  <div id="google_error" class="hidden">NoErrorReported</div>
   <script>
     window.gm_authFailure = () => {
       const div = document.getElementById('google_error');
-      div.innerText = "GoogleError";
+      div.innerText = "BadApiKey";
+      console.log('GOOGLE SAID BAD API KEY BRAH!');
     }
   </script>
 

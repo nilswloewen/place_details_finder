@@ -5,21 +5,36 @@ import GooglePlacesApi from "./GooglePlacesApi";
 import InitOutputRangeBtn from "./InitOutputRangeBtn";
 import BuildJsonBtn from "./BuildJsonBtn";
 import ApiKeyForm from "./ApiKeyForm";
+import Script from "react-load-script";
 
 export default class App extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      apiKey: null
+      apiKey: "",
+      validKey: false
     };
   }
 
   componentDidMount = () => {
-    OfficeRuntime.storage.getItem("apiKey").then(key => {
-      this.setState({
-        apiKey: key
+    if (!this.state.validKey) {
+      setTimeout(function() {}, 5000);
+      const error = document.getElementById("google_error");
+      if (error) {
+        if (error.innerText === "NoErrorReported") {
+          this.setState({
+            validKey: true
+          });
+        }
+      }
+    }
+    if (OfficeRuntime) {
+      OfficeRuntime.storage.getItem("apiKey").then(key => {
+        this.setState({
+          apiKey: key
+        });
       });
-    });
+    }
   };
 
   onSelectionChange = async args => {
@@ -88,8 +103,15 @@ export default class App extends React.Component {
       return <Progress title={title} message="Details Finder is loading..." />;
     }
 
-    if (this.state.apiKey === null) {
+    if (this.state.apiKey === "") {
       return <ApiKeyForm />;
+    } else if (!this.state.validKey) {
+      return (
+        <div id="google_error" className="hidden">
+          <Script url={"https://maps.googleapis.com/maps/api/js?libraries=places&key=" + this.state.apiKey} />
+          <Progress title={title} message="Linking with Google..." />
+        </div>
+      );
     }
 
     this.attachSelectionEventToTable();
