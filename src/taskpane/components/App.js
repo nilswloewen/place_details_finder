@@ -28,7 +28,7 @@ export default class App extends React.Component {
         }
       }
     }
-    if (OfficeRuntime) {
+    if (typeof OfficeRuntime !== "undefined") {
       OfficeRuntime.storage.getItem("apiKey").then(key => {
         this.setState({
           apiKey: key
@@ -96,16 +96,25 @@ export default class App extends React.Component {
     });
   };
 
+  checkForValidApiKey() {
+    const err = document.getElementById("google_error");
+    if (err.innerText === "GoogleError") {
+      this.setState({ apiKey: "Invalid", validKey: false });
+    }
+  }
+
   render() {
     const { title, isOfficeInitialized } = this.props;
-
     if (!isOfficeInitialized) {
       return <Progress title={title} message="Details Finder is loading..." />;
     }
 
-    if (this.state.apiKey === "") {
+    if (!this.state.apiKey) {
       return <ApiKeyForm />;
-    } else if (!this.state.validKey) {
+    } 
+    
+    this.checkForValidApiKey();
+    if (!this.state.validKey) {
       return (
         <div id="google_error" className="hidden">
           <Script url={"https://maps.googleapis.com/maps/api/js?libraries=places&key=" + this.state.apiKey} />

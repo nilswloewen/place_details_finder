@@ -33,15 +33,7 @@ export default class ApiKeyForm extends React.Component {
     event.preventDefault();
     await this.storeKey(this.state.apiKey);
     window.location.reload(false);
-    // this.checkForValidApiKey();
   };
-
-  checkForValidApiKey() {
-    const err = document.getElementById("google_error");
-    if (err.innerText === "GoogleError") {
-      this.setState({ apiKey: "Invalid" });
-    }
-  }
 
   render() {
     return (
