@@ -26,7 +26,6 @@ export default class ApiKeyForm extends React.Component {
       return;
     }
     const key = "apiKey";
-    console.log("storeKey:" + value);
     const report = await OfficeRuntime.storage.setItem(key, value).then(
       function(result) {
         return "Success: Item with key '" + key + "': " + value + " saved to storage.";

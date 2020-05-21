@@ -79,7 +79,8 @@
     window.gm_authFailure = () => {
       const div = document.getElementById('google_error');
       div.innerText = "BadApiKey";
-      console.log('GOOGLE SAID BAD API KEY BRAH!');
+      const apiKeyDiv = document.getElementById('apiKey');
+      apiKeyDiv.innerText = 'Invalid API Key. Please close and restart this add-in to enter valid key.';
     }
   </script>
 

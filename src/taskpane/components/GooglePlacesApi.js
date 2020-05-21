@@ -40,19 +40,27 @@ export default class GooglePlacesApi extends React.Component {
   };
 
   search = async () => {
-    console.log('ACTION: "Search" was clicked.');
-    document.getElementById("searching").innerText = "Searching...";
+    // console.log('ACTION: "Search" was clicked.');
+    let counter = 0;
     try {
       const numb_rows_selected = Number(document.getElementById("rows_selected").innerText);
       if (numb_rows_selected > 1) {
         const selected_row_index = Number(document.getElementById("selected_row_index").innerText);
-        for (let i = selected_row_index; i <= selected_row_index + numb_rows_selected; i++) {
+        for (let i = selected_row_index; i < selected_row_index + numb_rows_selected; i++) {
+          // Skip headers.
           if (i === 0) {
             continue;
           }
+
           const queryValues = await this.buildQueryFromRowIndex(i);
           const query = queryValues.join(" ");
-          document.getElementById("query_input").value = query;
+
+          // Update UI. 
+          document.getElementById("query_input").innerText = query;
+          counter += 1;
+          document.getElementById("searching").innerText =
+            "Searching for row " + (i + 1) + ", " + counter + "/" + numb_rows_selected + ".";
+
           if (query.length > 0) {
             await this.getDetailsFromQuery(i, query);
           } else {
@@ -211,10 +219,8 @@ export default class GooglePlacesApi extends React.Component {
         <PrimaryButton onClick={this.search} iconProps={{ iconName: "ChevronRight" }}>
           Search
         </PrimaryButton>
-        <div id="map" />
         <div id="searching" />
-
-        <Script url={"https://maps.googleapis.com/maps/api/js?libraries=places&key=" + this.props.apiKey } />
+        <Script url={"https://maps.googleapis.com/maps/api/js?libraries=places&key=" + this.props.apiKey} />
       </div>
     );
   }

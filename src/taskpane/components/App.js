@@ -4,16 +4,14 @@ import QueryColumnsTable from "./QueryColumnsTable";
 import GooglePlacesApi from "./GooglePlacesApi";
 import InitOutputRangeBtn from "./InitOutputRangeBtn";
 import BuildJsonBtn from "./BuildJsonBtn";
-import ApiKeyForm from "./ApiKeyForm";
-import Script from "react-load-script";
 
 export default class App extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      apiKey: "",
-      validKey: false
+      apiKey: ""
     };
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount = async () => {
@@ -28,14 +26,14 @@ export default class App extends React.Component {
         }
       }
     }
-    if (typeof OfficeRuntime !== "undefined") {
-      OfficeRuntime.storage.getItem("apiKey").then(key => {
-        this.setState({
-          apiKey: key
-        });
-      });
-    }
   };
+
+  handleChange(event) {
+    let input = event.target.value;
+    if (input) {
+      this.setState({ apiKey: input.trim() });
+    }
+  }
 
   onSelectionChange = async args => {
     console.log("onSelectionChange() fired.");
@@ -109,16 +107,16 @@ export default class App extends React.Component {
       return <Progress title={title} message="Details Finder is loading..." />;
     }
 
-    if (!this.state.apiKey) {
-      return <ApiKeyForm />;
-    }
-
-    this.checkForValidApiKey();
-    if (!this.state.validKey) {
+    if (!this.state.apiKey || !this.state.validKey) {
       return (
-        <div id="google_error" className="hidden">
-          <Script url={"https://maps.googleapis.com/maps/api/js?libraries=places&key=" + this.state.apiKey} />
-          <Progress title={title} message="Linking with Google..." />
+        <div className="section">
+          <div className="instructions">
+            <span className="bullet">Link with Google Places API</span>
+            Enter your <a href="https://cloud.google.com/maps-platform/">API key</a>.
+          </div>
+          <label>
+            <input defaultValue={this.state.apiKey} onChange={this.handleChange} placeholder="Paste Key Here" />
+          </label>
         </div>
       );
     }
@@ -130,6 +128,10 @@ export default class App extends React.Component {
         <div id="selected_address" className="hidden" />
         <div id="selected_row_index" className="hidden" />
         <div id="rows_selected" className="hidden" />
+        <label>
+          API Key:
+          <div id="apiKey">{this.state.apiKey}</div>
+        </label>
         <InitOutputRangeBtn />
         <QueryColumnsTable />
         <div className="section">
@@ -140,7 +142,6 @@ export default class App extends React.Component {
           <div contentEditable={true} id="query_input" placeholder={"Click on a row..."} style={{ width: "280px" }} />
         </div>
         <GooglePlacesApi apiKey={this.state.apiKey} />
-        <ApiKeyForm apiKey={this.state.apiKey} />
         <BuildJsonBtn />
       </div>
     );
