@@ -16,7 +16,7 @@ export default class App extends React.Component {
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
     if (!this.state.validKey) {
       setTimeout(function() {}, 5000);
       const error = document.getElementById("google_error");
@@ -111,8 +111,8 @@ export default class App extends React.Component {
 
     if (!this.state.apiKey) {
       return <ApiKeyForm />;
-    } 
-    
+    }
+
     this.checkForValidApiKey();
     if (!this.state.validKey) {
       return (

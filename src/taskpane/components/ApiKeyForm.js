@@ -12,15 +12,24 @@ export default class ApiKeyForm extends React.Component {
   }
 
   handleChange(event) {
-    this.setState({ apiKey: event.target.value });
+    let input = event.target.value;
+    if (input) {
+      input = input.trim();
+      if (input) {
+        this.setState({ apiKey: input });
+      }
+    }
   }
 
   storeKey = async value => {
+    if (!value || typeof value === "undefined") {
+      return;
+    }
     const key = "apiKey";
     console.log("storeKey:" + value);
     const report = await OfficeRuntime.storage.setItem(key, value).then(
       function(result) {
-        return "Success: Item with key '" + key + "' saved to storage.";
+        return "Success: Item with key '" + key + "': " + value + " saved to storage.";
       },
       function(error) {
         return "Error: Unable to save item with key '" + key + "' to storage. " + error;
