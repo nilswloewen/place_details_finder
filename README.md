@@ -29,6 +29,10 @@ This template supports debugging using any of the following techniques:
 
 If
 
+
+## Privacy Policy
+This add-in does not collect, transfer, or store any personal data. For more information on Microsoft Excel's add-in policies see https://privacy.microsoft.com/en-us/privacystatement
+
 ## Additional resources
 
 - [Office add-in documentation](https://docs.microsoft.com/office/dev/add-ins/overview/office-add-ins)
