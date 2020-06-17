@@ -5,7 +5,6 @@ import Script from "react-load-script";
 export default class GooglePlacesApi extends React.Component {
   constructor(props) {
     super(props);
-    // AIzaSyCmUt-K0aosnFZJ-S8BDpWzmL_jMQIyamc
   }
 
   getPlaceIdFromQuery = query => {
