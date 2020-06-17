@@ -2,7 +2,7 @@
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="TaskPaneApp">
   <Id>fc00b694-c907-4767-a251-4d8df998189b</Id>
   <Version>1.0.0.0</Version>
-  <ProviderName>Contoso</ProviderName>
+  <ProviderName>Nils Loewen</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="Place Details Finder"/>
   <Description DefaultValue="Use partial address information to query for full location details."/>
@@ -10,7 +10,7 @@
   <HighResolutionIconUrl DefaultValue="https://place-details-finder.nilsloewen.com/assets/icon-80.png"/>
   <SupportUrl DefaultValue="https://place-details-finder.nilsloewen.com"/>
   <AppDomains>
-    <AppDomain>nilsloewen.com</AppDomain>
+    <AppDomain>place-details-finder.nilsloewen.com</AppDomain>
   </AppDomains>
   <Hosts>
     <Host Name="Workbook"/>
