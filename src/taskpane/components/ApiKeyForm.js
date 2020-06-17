@@ -48,7 +48,7 @@ export default class ApiKeyForm extends React.Component {
       <div className="section">
         <div className="instructions">
           <span className="bullet">Link with Google Places API</span>
-          Enter your <a href="https://cloud.google.com/maps-platform/" target="_blank">API key</a>.
+          Enter your <a href="https://cloud.google.com/maps-platform/" rel="noopener noreferrer" target="_blank">API key</a>.
         </div>
         <label>
           ApiKey:
