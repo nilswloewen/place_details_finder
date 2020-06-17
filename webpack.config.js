@@ -70,6 +70,10 @@ module.exports = async (env, options)  => {
           template: "./src/commands/commands.html",
           chunks: ["commands"]
       }),
+      new HtmlWebpackPlugin({
+        filename: "index.html",
+        template: './src/taskpane/index.html',
+      }),
       new CopyWebpackPlugin([
           {
               from: './assets',
