@@ -7,7 +7,7 @@
   <DisplayName DefaultValue="Place Details Finder"/>
   <Description DefaultValue="Use partial address information to query for full location details."/>
   <IconUrl DefaultValue="https://place-details-finder.nilsloewen.com/assets/icon-32.png"/>
-  <HighResolutionIconUrl DefaultValue="https://place-details-finder.nilsloewen.com/assets/icon-80.png"/>
+  <HighResolutionIconUrl DefaultValue="https://place-details-finder.nilsloewen.com/assets/icon-64.png"/>
   <SupportUrl DefaultValue="https://place-details-finder.nilsloewen.com"/>
   <AppDomains>
     <AppDomain>place-details-finder.nilsloewen.com</AppDomain>
