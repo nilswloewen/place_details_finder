@@ -4,14 +4,19 @@ import QueryColumnsTable from "./QueryColumnsTable";
 import GooglePlacesApi from "./GooglePlacesApi";
 import InitOutputRangeBtn from "./InitOutputRangeBtn";
 import BuildJsonBtn from "./BuildJsonBtn";
+import { DefaultButton } from "office-ui-fabric-react";
+import { PrimaryButton } from "office-ui-fabric-react";
 
 export default class App extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      apiKey: ""
+      apiKey: "",
+      submitted: false
     };
     this.handleChange = this.handleChange.bind(this);
+    this.clearApiKey= this.clearApiKey.bind(this);
+    this.submitApiKey= this.submitApiKey.bind(this);
   }
 
   componentDidMount = async () => {
@@ -33,6 +38,16 @@ export default class App extends React.Component {
     if (input) {
       this.setState({ apiKey: input.trim() });
     }
+  }
+
+  submitApiKey() {
+    if (this.state.apiKey.length > 0) {
+      this.setState({submitted: true});
+    }
+  }
+
+  clearApiKey() {
+    location.reload();
   }
 
   onSelectionChange = async args => {
@@ -107,7 +122,7 @@ export default class App extends React.Component {
       return <Progress title={title} message="Details Finder is loading..." />;
     }
 
-    if (!this.state.apiKey || !this.state.validKey) {
+    if (!this.state.apiKey || !this.state.validKey || !this.state.submitted) {
       return (
           <div className="section">
             <div className="instructions">
@@ -126,15 +141,15 @@ export default class App extends React.Component {
                 This add-in does not transfer or store your API key. The key is used only in the current session when you are using this add-in.
               </p>
               <p>
-                You may need to enter the API key every time you start this add-in. If you have entered an incorrect key, simply close and remove this add-in, and then re-install and open this add-in to enter the correct key.
-              </p>
-              <p>
-                Once you have a Google Places API Key, please enter it here:
               </p>
             </div>
             <label>
-              <input defaultValue={this.state.apiKey} onChange={this.handleChange} placeholder="Paste Key Here" />
+              Once you have a Google Places API Key, please enter it here:
+              <input defaultValue={this.state.apiKey} onChange={this.handleChange} placeholder="Enter API Key Here" />
             </label>
+            <PrimaryButton onClick={this.submitApiKey} iconProps={{ iconName: "ChevronRight" }} id="submitApiKeyBtn">
+              Submit API Key
+            </PrimaryButton>
           </div>
       );
     }
@@ -147,23 +162,31 @@ export default class App extends React.Component {
           <div id="selected_row_index" className="hidden" />
           <div id="rows_selected" className="hidden" />
           <label>
-            API Key:
+            <b>API Key:</b>
             <div id="apiKey">{this.state.apiKey}</div>
           </label>
-          <InitOutputRangeBtn />
-          <QueryColumnsTable />
-          <div className="section">
-            <div className="instructions">
-              <span className="bullet">Step 3.</span>
-              Select a row then review and/or modify the query built from your selection.
-              <p>
-                If multiple rows are selected, only the first query will be shown here. When "Search" is clicked, your queries will be sent one at a time automatically.
-              </p>
+
+          <DefaultButton onClick={this.clearApiKey} iconProps={{ iconName: "ChevronRight" }} id="deleteApiKeyBtn">
+            Delete API Key
+          </DefaultButton>
+          <hr/>
+
+          <div id="main">
+            <InitOutputRangeBtn />
+            <QueryColumnsTable />
+            <div className="section">
+              <div className="instructions">
+                <span className="bullet">Step 3.</span>
+                Select a row then review and/or modify the query built from your selection.
+                <p>
+                  If multiple rows are selected, only the first query will be shown here. When "Search" is clicked, your queries will be sent one at a time automatically.
+                </p>
+              </div>
+              <div contentEditable={true} id="query_input" placeholder={"Click on a row..."} style={{ width: "280px" }} />
             </div>
-            <div contentEditable={true} id="query_input" placeholder={"Click on a row..."} style={{ width: "280px" }} />
+            <GooglePlacesApi apiKey={this.state.apiKey} />
+            <BuildJsonBtn />
           </div>
-          <GooglePlacesApi apiKey={this.state.apiKey} />
-          <BuildJsonBtn />
         </div>
     );
   }

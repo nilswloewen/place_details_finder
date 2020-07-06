@@ -1,5 +1,5 @@
 import * as React from "react";
-import { PrimaryButton } from "office-ui-fabric-react";
+import { DefaultButton } from "office-ui-fabric-react";
 
 export default class InitOutputRangeBtn extends React.Component {
   constructor(props) {
@@ -96,9 +96,9 @@ export default class InitOutputRangeBtn extends React.Component {
           <span className="bullet">Step 1.</span>
           Create the columns where found address details will be stored.
         </div>
-        <PrimaryButton id="init_output_range_btn" onClick={this.initRange} iconProps={{ iconName: "ChevronRight" }}>
+        <DefaultButton id="init_output_range_btn" onClick={this.initRange} iconProps={{ iconName: "ChevronRight" }}>
           Create output columns 
-        </PrimaryButton>
+        </DefaultButton>
       </div>
     );
   }

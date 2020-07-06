@@ -45,6 +45,10 @@
       .section {
         margin: 15px 0;
       }
+      #deleteApiKeyBtn {
+        margin-top: 6px;
+        margin-bottom: 12px;
+      }
 
       .instructions {
         margin-bottom: 6px;
@@ -65,6 +69,9 @@
       .query_btns {
         margin-right: 6px;
       }
+      .blur {
+        filter: blur(2px);
+      }
 
       div[contenteditable="true"] {
         border: 1px solid#aaa;
@@ -81,6 +88,8 @@
       div.innerText = "BadApiKey";
       const apiKeyDiv = document.getElementById('apiKey');
       apiKeyDiv.innerText = 'Invalid API Key. Please close and restart this add-in to enter valid key.';
+      const main = document.getElementById('main');
+      main.classList.add('blur');
     }
   </script>
 
