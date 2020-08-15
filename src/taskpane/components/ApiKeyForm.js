@@ -34,7 +34,6 @@ export default class ApiKeyForm extends React.Component {
         return "Error: Unable to save item with key '" + key + "' to storage. " + error;
       }
     );
-    console.log(report);
   };
 
   handleSubmit = async event => {

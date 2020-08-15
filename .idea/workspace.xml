@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="907bf54c-81dd-4581-bf4f-a2d4187d1c3d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/taskpane/components/ApiKeyForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/taskpane/components/ApiKeyForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/taskpane/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/taskpane/components/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/taskpane/components/BuildJsonBtn.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/taskpane/components/BuildJsonBtn.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/taskpane/components/GooglePlacesApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/taskpane/components/GooglePlacesApi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/taskpane/components/InitOutputRangeBtn.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/taskpane/components/InitOutputRangeBtn.js" afterDir="false" />
     </list>
@@ -50,7 +54,7 @@
       <workItem from="1593583684318" duration="5119000" />
       <workItem from="1594011719660" duration="6243000" />
       <workItem from="1597508149491" duration="365000" />
-      <workItem from="1597508523391" duration="4542000" />
+      <workItem from="1597508523391" duration="5213000" />
     </task>
     <servers />
   </component>
@@ -74,18 +78,23 @@
       <screen x="0" y="28" width="1440" height="2532" />
     </state>
     <state width="1390" height="762" key="GridCell.Tab.0.right/0.28.1440.2532/1440.550.2560.1440@0.28.1440.2532" timestamp="1593710996330" />
-    <state x="593" y="311" width="730" height="495" key="MultipleFileMergeDialog" timestamp="1597514690738">
+    <state x="188" y="117" width="1536" height="885" key="MergeDialog" timestamp="1597514878973">
       <screen x="0" y="28" width="1920" height="1052" />
     </state>
-    <state x="593" y="311" width="730" height="495" key="MultipleFileMergeDialog/0.28.1920.1052@0.28.1920.1052" timestamp="1597514690738" />
+    <state x="188" y="117" width="1536" height="885" key="MergeDialog/0.28.1920.1052@0.28.1920.1052" timestamp="1597514878973" />
+    <state x="593" y="304" width="730" height="495" key="MultipleFileMergeDialog" timestamp="1597514878979">
+      <screen x="0" y="28" width="1920" height="1052" />
+    </state>
+    <state x="593" y="304" width="730" height="495" key="MultipleFileMergeDialog/0.28.1920.1052@0.28.1920.1052" timestamp="1597514878979" />
     <state x="444" y="165" width="1031" height="744" key="SettingsEditor" timestamp="1597509776027">
       <screen x="0" y="28" width="1920" height="1052" />
     </state>
     <state x="444" y="165" width="1031" height="744" key="SettingsEditor/0.28.1920.1052@0.28.1920.1052" timestamp="1597509776027" />
-    <state x="401" y="857" width="638" height="873" key="find.popup" timestamp="1593587203168">
-      <screen x="0" y="28" width="1440" height="2532" />
+    <state x="535" y="372" width="851" height="582" key="find.popup" timestamp="1597515355223">
+      <screen x="0" y="28" width="1920" height="1052" />
     </state>
     <state x="401" y="857" width="638" height="873" key="find.popup/0.28.1440.2532/1440.550.2560.1440@0.28.1440.2532" timestamp="1593587203168" />
+    <state x="535" y="372" width="851" height="582" key="find.popup/0.28.1920.1052@0.28.1920.1052" timestamp="1597515355223" />
     <state x="624" y="248" key="run.anything.popup" timestamp="1597508894812">
       <screen x="0" y="28" width="1920" height="1052" />
     </state>

@@ -26,7 +26,6 @@ export default class BuildJsonBtn extends React.Component {
   };
 
   buildJson = async () => {
-    console.log('ACTION: "Export as JSON" was clicked.');
     document.getElementById("json_output").value = "Building JSON...";
     let places = new Map();
     const rows = await this.getAllRowsWithNameValue();
@@ -65,13 +64,11 @@ export default class BuildJsonBtn extends React.Component {
 
         places.set(place.name, place);
       }
-      console.log(places);
       places = new Map([...places.entries()].sort());
       let sortedPlaces = [];
       for (const [key, value] of places) {
         sortedPlaces.push(value);
       }
-      console.log(sortedPlaces);
 
       document.getElementById("json_output").value = JSON.stringify(sortedPlaces);
     } catch (error) {

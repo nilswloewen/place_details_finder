@@ -36,7 +36,6 @@ export default class GooglePlacesApi extends React.Component {
   };
 
   search = async () => {
-    // console.log('ACTION: "Search" was clicked.');
     let counter = 0;
     try {
       const numb_rows_selected = Number(document.getElementById("rows_selected").innerText);

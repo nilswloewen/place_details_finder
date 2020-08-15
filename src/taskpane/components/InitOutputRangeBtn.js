@@ -4,7 +4,6 @@ import { DefaultButton } from "office-ui-fabric-react";
 export default class InitOutputRangeBtn extends React.Component {
 
   initRange = async () => {
-    console.log("ACTION: 'Initialize Table' Button was clicked.");
     const headers = new Map([
       ["longitude", "Longitude"],
       ["latitude", "Latitude"],

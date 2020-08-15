@@ -51,7 +51,6 @@ export default class App extends React.Component {
   }
 
   onSelectionChange = async args => {
-    console.log("onSelectionChange() fired.");
     let get = async () => {
       await Excel.run(async context => {
         const sheet = context.workbook.worksheets.getItem(args.worksheetId);
@@ -105,16 +104,8 @@ export default class App extends React.Component {
       sheet.onSelectionChanged.add(this.onSelectionChange);
 
       await context.sync();
-      console.log("onSelectionChanged event successfully registered SourceTable.");
     });
   };
-
-  checkForValidApiKey() {
-    const err = document.getElementById("google_error");
-    if (err.innerText === "GoogleError") {
-      this.setState({ apiKey: "Invalid", validKey: false });
-    }
-  }
 
   render() {
     const { title, isOfficeInitialized } = this.props;
