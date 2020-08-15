@@ -4,9 +4,6 @@ import { DefaultButton } from "office-ui-fabric-react";
 export default class InitOutputRangeBtn extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      hidden: false
-    };
   }
 
   initRange = async () => {
@@ -78,18 +75,10 @@ export default class InitOutputRangeBtn extends React.Component {
     } catch (error) {
       console.error("InitOutputRangeBtn::initRange() error...");
       console.error(error);
-      return;
     }
-
-    this.setState((prevState, props) => {
-      return { hidden: true };
-    });
   };
 
   render() {
-    if (this.state.hidden) {
-      return null;
-    }
     return (
       <div className="section">
         <div className="instructions">
