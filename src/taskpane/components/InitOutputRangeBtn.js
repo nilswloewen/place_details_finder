@@ -2,9 +2,6 @@ import * as React from "react";
 import { DefaultButton } from "office-ui-fabric-react";
 
 export default class InitOutputRangeBtn extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   initRange = async () => {
     console.log("ACTION: 'Initialize Table' Button was clicked.");
