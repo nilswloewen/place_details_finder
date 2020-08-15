@@ -55,7 +55,7 @@ export default class GooglePlacesApi extends React.Component {
           document.getElementById("query_input").innerText = query;
           counter += 1;
           document.getElementById("searching").innerText =
-              "Searching for row " + (i + 1) + ", " + counter + "/" + numb_rows_selected + ".";
+            "Searching for row " + (i + 1) + ", " + counter + "/" + numb_rows_selected + ".";
 
           if (query.length > 0) {
             await this.getDetailsFromQuery(i, query);
@@ -218,14 +218,14 @@ export default class GooglePlacesApi extends React.Component {
 
   render() {
     return (
-        <div className="section">
-          <div id="map" />
-          <PrimaryButton onClick={this.search} iconProps={{ iconName: "ChevronRight" }}>
-            Search
-          </PrimaryButton>
-          <div id="searching" />
-          <Script url={"https://maps.googleapis.com/maps/api/js?libraries=places&key=" + this.props.apiKey} />
-        </div>
+      <div className="section">
+        <div id="map" />
+        <PrimaryButton onClick={this.search} iconProps={{ iconName: "ChevronRight" }}>
+          Search
+        </PrimaryButton>
+        <div id="searching" />
+        <Script url={"https://maps.googleapis.com/maps/api/js?libraries=places&key=" + this.props.apiKey} />
+      </div>
     );
   }
 }

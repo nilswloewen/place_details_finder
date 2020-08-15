@@ -52,8 +52,7 @@ export default class QueryColumnsTable extends React.Component {
             ))}
           </tbody>
         </table>
-
-        <DefaultButton className="query_btns" onClick={this.handleAddSelectedColumn}>Add</DefaultButton>
+        <DefaultButton className="query_btns" onClick={this.handleAddSelectedColumn}  iconProps={{ iconName: "ChevronRight" }}>Add</DefaultButton>
         {Boolean(this.state.rows.length) && <DefaultButton className="query_btns" onClick={this.handleRemoveRow}>Remove</DefaultButton>}
       </div>
     );

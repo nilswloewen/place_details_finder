@@ -1,13 +1,7 @@
 import * as React from "react";
-import { PrimaryButton } from "office-ui-fabric-react";
+import { DefaultButton } from "office-ui-fabric-react";
 
 export default class InitOutputRangeBtn extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      hidden: false
-    };
-  }
 
   initRange = async () => {
     console.log("ACTION: 'Initialize Table' Button was clicked.");
@@ -79,27 +73,19 @@ export default class InitOutputRangeBtn extends React.Component {
     } catch (error) {
       console.error("InitOutputRangeBtn::initRange() error...");
       console.error(error);
-      return;
     }
-
-    this.setState((prevState, props) => {
-      return { hidden: true };
-    });
   };
 
   render() {
-    if (this.state.hidden) {
-      return null;
-    }
     return (
       <div className="section">
         <div className="instructions">
           <span className="bullet">Step 1.</span>
           Create the columns where found address details will be stored.
         </div>
-        <PrimaryButton id="init_output_range_btn" onClick={this.initRange} iconProps={{ iconName: "ChevronRight" }}>
+        <DefaultButton id="init_output_range_btn" onClick={this.initRange} iconProps={{ iconName: "ChevronRight" }}>
           Create output columns 
-        </PrimaryButton>
+        </DefaultButton>
       </div>
     );
   }

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { PrimaryButton } from "office-ui-fabric-react";
+import { DefaultButton } from "office-ui-fabric-react";
 
 export default class BuildJsonBtn extends React.Component {
 
@@ -81,16 +81,16 @@ export default class BuildJsonBtn extends React.Component {
 
   render() {
     return (
-      <div className="section">
-        <div className="instructions">
-          <span className="bullet">Step 5.</span>
-          Export found Place Details as JSON.
+        <div className="section">
+          <div className="instructions">
+            <span className="bullet">Step 5. (Optional)</span>
+            Export found Place Details as JSON. This may be useful if place data collected here is being used to populate a map built with <a href="https://developers.google.com/maps/documentation/javascript/tutorial" target="_blank" rel="noopener noreferrer">Maps JavaScript API</a>.
+          </div>
+          <DefaultButton onClick={this.buildJson} iconProps={{ iconName: "ChevronRight" }}>
+            Build JSON
+          </DefaultButton>
+          <input id="json_output" type="textarea" readOnly={true} style={{ width: "280px" }} placeholder="JSON will appear here."/>
         </div>
-        <PrimaryButton onClick={this.buildJson} iconProps={{ iconName: "ChevronRight" }}>
-          Build JSON
-        </PrimaryButton>
-        <input id="json_output" type="textarea" readOnly={true} style={{ width: "280px" }} />
-      </div>
     );
   }
 }
