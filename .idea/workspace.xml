@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="907bf54c-81dd-4581-bf4f-a2d4187d1c3d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/taskpane/components/ApiKeyForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/taskpane/components/ApiKeyForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/taskpane/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/taskpane/components/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/taskpane/components/BuildJsonBtn.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/taskpane/components/BuildJsonBtn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/taskpane/components/GooglePlacesApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/taskpane/components/GooglePlacesApi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/taskpane/components/InitOutputRangeBtn.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/taskpane/components/InitOutputRangeBtn.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,7 +29,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.vscode/launch.json" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -38,7 +37,15 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="build.tools" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Node" type="NodeJSConfigurationType" path-to-node="$USER_HOME$/.nvm/versions/node/v12.18.2/bin/node" path-to-js-file=".vscode/launch.json" working-dir="$PROJECT_DIR$">
+      <EXTENSION ID="com.jetbrains.nodejs.run.NodeJSStartBrowserRunConfigurationExtension">
+        <browser with-js-debugger="true" />
+      </EXTENSION>
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -54,7 +61,7 @@
       <workItem from="1593583684318" duration="5119000" />
       <workItem from="1594011719660" duration="6243000" />
       <workItem from="1597508149491" duration="365000" />
-      <workItem from="1597508523391" duration="5213000" />
+      <workItem from="1597508523391" duration="8571000" />
     </task>
     <servers />
   </component>
@@ -62,22 +69,34 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1390" height="762" key="GridCell.Tab.0.bottom" timestamp="1593710996330">
-      <screen x="0" y="28" width="1440" height="2532" />
+    <state x="422" y="209" width="1076" height="692" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1597517549933">
+      <screen x="0" y="28" width="1920" height="1052" />
+    </state>
+    <state x="422" y="209" width="1076" height="692" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.28.1920.1052@0.28.1920.1052" timestamp="1597517549933" />
+    <state x="746" y="314" width="424" height="498" key="FileChooserDialogImpl" timestamp="1597517535266">
+      <screen x="0" y="28" width="1920" height="1052" />
+    </state>
+    <state x="746" y="314" width="424" height="498" key="FileChooserDialogImpl/0.28.1920.1052@0.28.1920.1052" timestamp="1597517535266" />
+    <state width="1895" height="273" key="GridCell.Tab.0.bottom" timestamp="1597518341544">
+      <screen x="0" y="28" width="1920" height="1052" />
     </state>
     <state width="1390" height="762" key="GridCell.Tab.0.bottom/0.28.1440.2532/1440.550.2560.1440@0.28.1440.2532" timestamp="1593710996330" />
-    <state width="1390" height="762" key="GridCell.Tab.0.center" timestamp="1593710996329">
-      <screen x="0" y="28" width="1440" height="2532" />
+    <state width="1895" height="273" key="GridCell.Tab.0.bottom/0.28.1920.1052@0.28.1920.1052" timestamp="1597518341544" />
+    <state width="1895" height="273" key="GridCell.Tab.0.center" timestamp="1597518341543">
+      <screen x="0" y="28" width="1920" height="1052" />
     </state>
     <state width="1390" height="762" key="GridCell.Tab.0.center/0.28.1440.2532/1440.550.2560.1440@0.28.1440.2532" timestamp="1593710996329" />
-    <state width="1390" height="762" key="GridCell.Tab.0.left" timestamp="1593710996329">
-      <screen x="0" y="28" width="1440" height="2532" />
+    <state width="1895" height="273" key="GridCell.Tab.0.center/0.28.1920.1052@0.28.1920.1052" timestamp="1597518341543" />
+    <state width="1895" height="273" key="GridCell.Tab.0.left" timestamp="1597518341542">
+      <screen x="0" y="28" width="1920" height="1052" />
     </state>
     <state width="1390" height="762" key="GridCell.Tab.0.left/0.28.1440.2532/1440.550.2560.1440@0.28.1440.2532" timestamp="1593710996329" />
-    <state width="1390" height="762" key="GridCell.Tab.0.right" timestamp="1593710996330">
-      <screen x="0" y="28" width="1440" height="2532" />
+    <state width="1895" height="273" key="GridCell.Tab.0.left/0.28.1920.1052@0.28.1920.1052" timestamp="1597518341542" />
+    <state width="1895" height="273" key="GridCell.Tab.0.right" timestamp="1597518341544">
+      <screen x="0" y="28" width="1920" height="1052" />
     </state>
     <state width="1390" height="762" key="GridCell.Tab.0.right/0.28.1440.2532/1440.550.2560.1440@0.28.1440.2532" timestamp="1593710996330" />
+    <state width="1895" height="273" key="GridCell.Tab.0.right/0.28.1920.1052@0.28.1920.1052" timestamp="1597518341544" />
     <state x="188" y="117" width="1536" height="885" key="MergeDialog" timestamp="1597514878973">
       <screen x="0" y="28" width="1920" height="1052" />
     </state>
@@ -86,10 +105,10 @@
       <screen x="0" y="28" width="1920" height="1052" />
     </state>
     <state x="593" y="304" width="730" height="495" key="MultipleFileMergeDialog/0.28.1920.1052@0.28.1920.1052" timestamp="1597514878979" />
-    <state x="444" y="165" width="1031" height="744" key="SettingsEditor" timestamp="1597509776027">
+    <state x="444" y="158" width="1031" height="744" key="SettingsEditor" timestamp="1597517443214">
       <screen x="0" y="28" width="1920" height="1052" />
     </state>
-    <state x="444" y="165" width="1031" height="744" key="SettingsEditor/0.28.1920.1052@0.28.1920.1052" timestamp="1597509776027" />
+    <state x="444" y="158" width="1031" height="744" key="SettingsEditor/0.28.1920.1052@0.28.1920.1052" timestamp="1597517443214" />
     <state x="535" y="372" width="851" height="582" key="find.popup" timestamp="1597515355223">
       <screen x="0" y="28" width="1920" height="1052" />
     </state>

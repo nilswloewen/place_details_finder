@@ -142,7 +142,7 @@ export default class GooglePlacesApi extends React.Component {
     }
 
     if (errorMsg === 'OVER_QUERY_LIMIT') {
-      console.error("GooglePlacesApi: " + error);
+      console.error("GooglePlacesApi: " + errorMsg);
       setTimeout(async () => {
         await this.getDetailsFromQuery(row, query);
         console.warn("waited 3 seconds");

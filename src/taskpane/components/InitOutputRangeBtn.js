@@ -36,7 +36,7 @@ export default class InitOutputRangeBtn extends React.Component {
             const hasHeader = sheet.getRangeByIndexes(binding.top, binding.columnIndex, 1, 1).load("values");
             await context.sync();
             if (hasHeader.values.length) {
-              console.error(hasHeader.values);
+              console.error('Output columns already exist.');
               return;
             }
           } catch (error) {
