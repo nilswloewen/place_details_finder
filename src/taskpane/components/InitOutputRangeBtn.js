@@ -39,6 +39,7 @@ export default class InitOutputRangeBtn extends React.Component {
           try {
             binding.getRange().load(["top", "columnIndex"]);
             await context.sync();
+            const sheet = context.workbook.worksheets.getActiveWorksheet();
             const hasHeader = sheet.getRangeByIndexes(binding.top, binding.columnIndex, 1, 1).load("values");
             await context.sync();
             if (hasHeader.values.length) {
